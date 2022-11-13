@@ -1,25 +1,27 @@
 <div class="container">
-    <button type="button" (click)="button()"> get data</button>
+    <button type="button" (click)="getCustomers()"> get data</button>
 
 <table style="width:100%">
     <thead>
         <tr>
+            <th>Loan Id</th>
             <th>CustomerId</th>
             <th>CustomerName</th>
             <th>Address</th>
             <th>PanNo</th>
-            <th>Password</th>
+        
+        </tr>
+    
+        <tr *ngFor="let l of lo">
+            <td><a [routerLink]="['/loan',l.loanId]">{{l.loanId}}</a></td>
+            <!-- <td>hello</td> -->
+            <td>{{l.customer.customerId}}</td>
+            <td>{{l.customer.customerName}}</td>
+            <td>{{l.customer.address}}</td>
+            <td>{{l.customer.pan}}</td>
+            
         </tr>
     </thead>
-    <tbody>
-        <tr *ngFor="let customer of customers">
-            <td>{{customer.customerId}}</td>
-            <td>{{customer.customerName}}</td>
-            <td>{{customer.address}}</td>
-            <td>{{customer.panNo}}</td>
-            <td>{{customer.password}}</td>
-        </tr>
-    </tbody>
     <!-- class="table table-striped"  -->
 </table>
 

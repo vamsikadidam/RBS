@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { CustomerService } from '../customer.service';
+import { customer } from 'src/customer';
+import { loan } from 'src/loan';
+import { ProjserviceService } from '../projservice.service';
 
 @Component({
   selector: 'app-customer',
@@ -9,19 +11,24 @@ import { CustomerService } from '../customer.service';
 })
 export class CustomerComponent implements OnInit {
 
+lo:loan[]=[];
+cust:customer;
 
-customers:any;
-
-  constructor(private service:CustomerService) { }
+  constructor(public service:ProjserviceService) { }
 
   ngOnInit(): void {
-    // this.customers=this.service.getCustomer().subscribe(data=>this.customers=data);
-  //  let response= this.http.get("http://localhost:8080/customer");
-  //  response.subscribe((data)=>this.customers=data);
+
+  this.cust=new customer();
   }
-  button(){
-    this.customers=this.service.getCustomer().subscribe(data=>this.customers=data);
- 
+
+
+  getCustomers():void{
+    this.service.getCustomers().subscribe(
+      data=>{
+        this.lo=data;
+      }
+    )
   }
+  
 
 }
